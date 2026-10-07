@@ -6,6 +6,7 @@ const authRouter = Router();
 authRouter.patch("/verify-account", authController.verifyAccount);
 authRouter.post("/login", authController.login);
 authRouter.post("/resend-otp", authController.resendOTP);
-
+authRouter.patch("/change-password", authController.changePassword);
+authRouter.post("/google-login", authController.googleLogin);
  
 export default authRouter;

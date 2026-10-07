@@ -4,11 +4,11 @@ import express from "express";
 import userRouter from "./app/user/user.route.js";
 import authRouter from "./app/auth/auth.route.js";
 import messageRouter from "./app/message/message.route.js"; 
-import { OTP } from "./app/auth/model/otp.model.js";
+import cors from "cors";
 config();
 const app = express();
 
-
+app.use(cors({origin: 'http://localhost:4200'}));
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
 app.use("/messages", messageRouter);
