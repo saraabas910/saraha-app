@@ -1,4 +1,5 @@
 import { OAuth2Client } from 'google-auth-library';
+import { env } from '../config/env.js';
 
 
 
@@ -9,7 +10,7 @@ export async function verifyToken(idToken) {
 
   try {
   const ticket = await client.verifyIdToken({id_token: idToken, 
-    audience: process.env.GOOGLE_OAUTH_CLIENT_ID});
+    audience: env.google.WebclientId});
   return ticket.getPayload();
 
 

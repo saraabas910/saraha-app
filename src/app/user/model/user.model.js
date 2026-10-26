@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 
-const userSchema = new Schema({
+ const userSchema = new Schema({
 
   name: {
      type: String,
@@ -37,12 +37,12 @@ const userSchema = new Schema({
         default: false
     },
 
-        isverified: {
+        isVerified: {
         type: Boolean,
         default: false
     },
 
-    dob : date,
+    dob: Date, 
 
     gender: {
         type: String,
@@ -51,7 +51,16 @@ const userSchema = new Schema({
     
 },
 
-     
+
+    profilePicPath: {
+  type: String
+},
+coverImagePaths: [{
+  type: String
+}],
+cvPath: {
+  type: String
+}
 
         
 },{

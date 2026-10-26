@@ -5,9 +5,9 @@ export function validate(dtoSchema, data) {
 
     const result = dtoSchema.safeParse(data);
 
-       if (!result.success) 
-    throw new Error(result.error.issues.map(e => `${e.path[0]}: ${e.message}`).join(', '));
+       if (!result.success)
+    throw new Error(result.error.issues.map(e => `${e.path[0]}: ${e.message}`).join(', '), 400);
    return result.data;
 
-  
+
 }

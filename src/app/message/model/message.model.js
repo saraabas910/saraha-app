@@ -1,10 +1,11 @@
 import {Schema, model} from 'mongoose';
 
 const messageSchema = new Schema({
+ 
   sender: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-   
+
   },
   receiver: {
     type: Schema.Types.ObjectId,
@@ -15,6 +16,10 @@ const messageSchema = new Schema({
     type: String,
     required: true,
     maxlength: 500
+  },
+  isAnonymous: {
+    type: Boolean,
+    default: false
   }
   , ISdeleted: {
     type: Boolean,

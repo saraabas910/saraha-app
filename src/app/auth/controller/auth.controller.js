@@ -1,5 +1,10 @@
 import * as authService from '../service/auth.service.js';
-import { validate } from '../../../common/validation/validation.js';
+import { validate } from '../../../lib/validation/validation.js';
+import {registerSchema} from '../dtos/register.dto.js'
+import {verifyAccountSchema} from '../dtos/register.dto.js'
+import {sendOTPSchema} from '../dtos/register.dto.js'
+import {loginSchema} from '../dtos/register.dto.js'
+
 
 
 export async function register(req, res , next) {
@@ -32,8 +37,7 @@ export async function login(req, res , next) {
     const validatedData = validate(loginSchema, req.body);
     const { email, password } = validatedData;
     const token = await authService.login(email, password);
-    res.cookie('token', token, { httpOnly: true, secure: true , maxAge: 24 * 60 * 60 * 1000 });
-    res.json({ message: 'Login successful', 
+res.cookie('access_token', token, { httpOnly: true, secure: true, maxAge: 24 * 60 * 60 * 1000 });    res.json({ message: 'Login successful', 
        token: token });
   }
     catch(error){
@@ -65,7 +69,7 @@ export async function resendOTP(req, res , next) {
   }
 }
 
- async function googleLogin(req, res , next) {
+export async function googleLogin(req, res , next) {
   try{
     
     const token = await authService.googleLogin(req.body.idToken);
