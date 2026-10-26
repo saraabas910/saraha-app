@@ -22,32 +22,20 @@ export async function getAllMessages(userId) {
 }
 
 
-
-
-
-
 export async function findMessageById(messageId) {
     return await Message.findById(messageId);
 }
-
-
-
-
+export async function findMessageWithSender(messageId) {
+  return await Message.findById(messageId).populate("sender", "name email");
+}
 
 export async function findIdentityRequestById(requestId) {
     return await IdentityRequest.findById(requestId);
 }
 
-
-
 export async function findIdentityRequestByMessageId(messageId) {
     return await IdentityRequest.findOne({ message: messageId });
 }
-
-
-
-
-
 
 
 export async function createIdentityRequest(messageId, receiverId, senderId) {

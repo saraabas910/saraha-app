@@ -102,3 +102,25 @@ export async function respondToIdentityRequest(req, res, next) {
         next(error);
     }
 }
+
+export async function getRevealIdentity(req, res , next){
+
+       try{
+       const { requestId } = req.params;
+       const senderId = req.user.id;
+
+       const result = await messageService.getRevealIdentityService(requestId,senderId)
+
+       return res.status(200).json({
+            success: true,
+            data: result
+
+
+       })
+       }catch(error){
+        next(error)
+
+       }
+
+    
+    }

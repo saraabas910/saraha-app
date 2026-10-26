@@ -12,3 +12,4 @@ messageRouter.get('/my-messages' , guard, messageController.getAllMessages)
 messageRouter.post("/:messageId/request-identity", guard, messageController.requestIdentityController);
 messageRouter.get('/identity-requests', guard , messageController.getMyIdentityRequests);
 messageRouter.patch('/identity-requests/:requestId', guard, messageController.respondToIdentityRequest);
+messageRouter.get('/identity-requests/:requestId/reveal', guard, messageController.getRevealIdentity);

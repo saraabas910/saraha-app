@@ -80,3 +80,28 @@ export async function handleIdentityRequest(requestId, senderId, status) {
 
     return updated;
 }
+
+export async function getRevealIdentityService(requestId,userId){
+   
+    const request = await messageRepository.findIdentityRequestById(requestId);
+     if (!request) {
+        throw new Error("Identity request not found");
+    }
+ if (request.receiver.toString() !== userId.toString()) {
+        throw new Error(" you are not the sender of this message");
+    }
+         if(request.status!=="accepted"){
+            throw new Error ("identity request not accepted ")
+            
+         }
+
+         const message = await messageRepository.findMessageWithSender(request.message)
+
+         if(!message){
+            throw new Error ("message not found")
+         }
+
+         return message.sender
+
+
+}
